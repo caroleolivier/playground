@@ -23,5 +23,19 @@ function fromArray(arr) {
     return cons;
 }
 
+function filter(cons, predicate) {
+    if(cons == null || undefined) {
+        return null;
+    } 
+    else if(predicate(cons.head)) {
+        return new Cons(cons.head, filter(cons.tail, predicate));
+    }
+    else {
+        return filter(cons.tail, predicate);
+    }
+
+}
+
 Cons.toArray = toArray;
 Cons.fromArray = fromArray;
+Cons.filter = filter;
