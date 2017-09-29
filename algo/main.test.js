@@ -71,6 +71,22 @@ describe('filter', () => {
         testFilter(input, predicate, expected);
     });
 
+    it('returns null if input is null', () => {
+        let input = null;
+        let predicate = elt => elt % 2 == 0;
+        let expected = null;
+
+        testFilter(input, predicate, expected);
+    });
+
+    it('returns null if input is undefined', () => {
+        let input = undefined;
+        let predicate = elt => elt % 2 == 0;
+        let expected = null;
+
+        testFilter(input, predicate, expected);
+    });
+
     function testFilter(input, predicate, expected) {
         let actual = Cons.filter(input, predicate);
         expect(actual).toEqual(expected);

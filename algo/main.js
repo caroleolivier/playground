@@ -4,16 +4,16 @@ function Cons(head, tail) {
 }
 
 function toArray(cons) {
-    if(cons) {
-        let tail = (cons.tail == null  || cons.tail == undefined) ?
-                    [] : toArray(cons.tail);
-        return [cons.head].concat(tail);
+    if(!cons) {
+        return null;
     }
-    return null;
+    let tail = (cons.tail == null  || cons.tail == undefined) ?
+                [] : toArray(cons.tail);
+    return [cons.head].concat(tail);
 }
 
 function fromArray(arr) {
-    if(arr == undefined || arr == null || arr.length < 1) {
+    if(!arr || arr.length < 1) {
         return null;
     }
     let cons = new Cons(arr[arr.length-1], null);
@@ -24,10 +24,10 @@ function fromArray(arr) {
 }
 
 function filter(cons, predicate) {
-    if(cons == null || undefined) {
+    if(!cons) {
         return null;
     } 
-    else if(predicate(cons.head)) {
+    if(predicate(cons.head)) {
         return new Cons(cons.head, filter(cons.tail, predicate));
     }
     else {
