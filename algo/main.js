@@ -5,10 +5,11 @@ function Cons(head, tail) {
 
 function toArray(cons) {
     if(cons) {
-        let arr = [];
-        return arr.concat(cons.head, toArray(cons.tail));
+        let tail = (cons.tail == null  || cons.tail == undefined) ?
+                    [] : toArray(cons.tail);
+        return [cons.head].concat(tail);
     }
-    return [];
+    return null;
 }
 
 function fromArray(arr) {
