@@ -6,13 +6,13 @@ describe('toArray', () => {
         expect(actual).toEqual(expected);
     });
 
-    it('converts undefined to an array', () => {
+    it('converts undefined to an empty array', () => {
         let actual = Cons.toArray(undefined);
         let expected = [];
         expect(actual).toEqual(expected);
     });
 
-    it('converts null to an array', () => {
+    it('converts null to an empty array', () => {
         let actual = Cons.toArray(null);
         let expected = [];
         expect(actual).toEqual(expected);
