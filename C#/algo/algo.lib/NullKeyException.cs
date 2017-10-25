@@ -3,7 +3,11 @@ namespace algo.lib
 {
     public class NullKeyException : Exception
     {
-        public NullKeyException()
+        public NullKeyException() : base()
+        {
+        }
+
+        public NullKeyException(string message) : base(message)
         {
         }
     }

@@ -50,7 +50,7 @@ namespace algo.lib
                 }
             }
 
-            throw new NotImplementedException();
+            throw new UnknownKeyException(key.ToString());
         }
 
         private LinkedList<KeyValuePair<TKey, TValue>> GetBucket(TKey key)

@@ -1,5 +1,4 @@
 using algo.lib;
-using System;
 using Xunit;
 
 namespace algo.test
@@ -7,7 +6,7 @@ namespace algo.test
     public class HashTableTests
     {
         [Fact]
-        public void Given_key_and_value_Then_value_should_be_added_and_retrieved_successfully_with_the_key()
+        public void Given_key_and_value_then_value_should_be_added_and_retrieved_successfully_with_the_key()
         {
             var hashTable = new HashTable<string, int>();
             const string key = "theKey";
@@ -50,6 +49,15 @@ namespace algo.test
             Assert.Equal(value1, hashTable.Get(key));
             hashTable.Add(key, value2);
             Assert.Equal(value2, hashTable.Get(key));
+        }
+
+        [Fact]
+        public void Given_key_for_non_existing_value_then_it_throws_UnknownKeyException_exception()
+        {
+            var hashTable = new HashTable<string, int>();
+            const string key = "theykey";
+
+            Assert.Throws<UnknownKeyException>(() => hashTable.Get(key));
         }
     }
 }
