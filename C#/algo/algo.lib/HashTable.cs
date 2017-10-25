@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Collections.Generic;
 
 namespace algo.lib
@@ -20,6 +21,15 @@ namespace algo.lib
                 throw new NullKeyException();
             }
             var bucket = GetBucket(key);
+            
+            foreach (var pair in bucket)
+            {
+                if(pair.Key.Equals(key))
+                {
+                    bucket.Remove(pair);
+                    break;
+                }
+            }
             bucket.AddLast(new KeyValuePair<TKey, TValue>(key, value));
         }
 
@@ -36,7 +46,7 @@ namespace algo.lib
             {
                 if(pair.Key.Equals(key))
                 {
-                    return pair.Value;    
+                    return pair.Value;
                 }
             }
 
