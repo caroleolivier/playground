@@ -59,5 +59,27 @@ namespace algo.test
 
             Assert.Throws<UnknownKeyException>(() => hashTable.Get(key));
         }
+
+        public void Given_key_for_existing_value_then_value_can_be_removed_by_calling_remove()
+        {
+            var hashTable = new HashTable<string, int>();
+            const string key = "theykey";
+            const int value = 10;
+
+            hashTable.Add(key, value);
+            Assert.Equal(value, hashTable.Get(key));
+            
+            hashTable.Remove(key);
+
+            Assert.Throws<UnknownKeyException>(() => hashTable.Get(key));
+        }
+
+        public void Trying_to_remove_value_with_null_key_should_throw_NullKeyException_exception()
+        {
+            var hashTable = new HashTable<object, int>();
+            object key = null;
+
+            Assert.Throws<NullKeyException>(() => hashTable.Remove(key));
+        }
     }
 }

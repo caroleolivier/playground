@@ -20,6 +20,7 @@ namespace algo.lib
             {
                 throw new NullKeyException();
             }
+
             var bucket = GetBucket(key);
             
             foreach (var pair in bucket)
@@ -31,6 +32,24 @@ namespace algo.lib
                 }
             }
             bucket.AddLast(new KeyValuePair<TKey, TValue>(key, value));
+        }
+
+        public void Remove(TKey key)
+        {
+            if (ReferenceEquals(key, null))
+            {
+                throw new NullKeyException();
+            }
+
+            var bucket = GetBucket(key);
+            foreach (var pair in bucket)
+            {
+                if(pair.Key.Equals(key))
+                {
+                    bucket.Remove(pair);
+                    break;
+                }
+            }
         }
 
         public TValue Get(TKey key)
@@ -73,6 +92,11 @@ namespace algo.lib
                 _buckets[bucketNo] = new LinkedList<KeyValuePair<TKey, TValue>>();
             }
             return _buckets[bucketNo];
+        }
+
+        public void Remove(string key)
+        {
+            throw new NotImplementedException();
         }
     }
 }
