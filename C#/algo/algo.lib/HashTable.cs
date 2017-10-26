@@ -22,7 +22,6 @@ namespace algo.lib
             }
 
             var bucket = GetBucket(key);
-            
             foreach (var pair in bucket)
             {
                 if(pair.Key.Equals(key))
@@ -60,7 +59,6 @@ namespace algo.lib
             }
 
             var bucket = GetBucket(key);
-
             foreach (var pair in bucket)
             {
                 if(pair.Key.Equals(key))
@@ -92,11 +90,6 @@ namespace algo.lib
                 _buckets[bucketNo] = new LinkedList<KeyValuePair<TKey, TValue>>();
             }
             return _buckets[bucketNo];
-        }
-
-        public void Remove(string key)
-        {
-            throw new NotImplementedException();
         }
     }
 }

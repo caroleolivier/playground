@@ -60,6 +60,7 @@ namespace algo.test
             Assert.Throws<UnknownKeyException>(() => hashTable.Get(key));
         }
 
+        [Fact]
         public void Given_key_for_existing_value_then_value_can_be_removed_by_calling_remove()
         {
             var hashTable = new HashTable<string, int>();
@@ -74,6 +75,7 @@ namespace algo.test
             Assert.Throws<UnknownKeyException>(() => hashTable.Get(key));
         }
 
+        [Fact]
         public void Trying_to_remove_value_with_null_key_should_throw_NullKeyException_exception()
         {
             var hashTable = new HashTable<object, int>();
