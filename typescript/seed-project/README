@@ -1,0 +1,32 @@
+# typescript-playground
+
+## Steps
+
+Set up
+
+```
+$ npm init -y # initialize npm with defaults
+$ npm install -D typescript @types/node # install types
+$ npx tsc --init
+```
+ℹ️ Build into ./build folder
+
+Source
+
+```
+$ mkdir src
+```
+
+Run
+```
+$ node build
+```
+
+### Tests
+
+```
+$ mkdir tests
+$ npm install ts-jest --save-dev
+$ npm install @types/jest --save-dev
+
+```
