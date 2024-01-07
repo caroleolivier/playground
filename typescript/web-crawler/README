@@ -1,0 +1,79 @@
+# web-crawler
+
+A web crawler that crawls a domain.
+
+The entry point is [index.ts](./src/index.ts).  
+I focused on the crawler algorithm whose logic is in [crawler.ts](./src/crawler.ts).  
+(the rest was a little bit neglected).  
+At a very high level:
+
+1. It reads a URL from the command line
+1. It creates a visited graph of URLs by visiting recursively pages.
+1. It prints the graph to the console.
+
+So the result of the program is what's printed.  
+If you run it locally (see below), you can read [output.log](./output.log).  
+Note that it contains both the logs and the results of the crawler as I am logging everything to stdout.  
+If you search the file for `CRAWLING RESULT` you'll see the results of the crawler, hopefully it's usable (and correct!).
+
+I implemented something quite dumb, and it could take a little while to run.
+
+### TODOs
+
+There's a long list of things I'd love to do but I ran out of time to do them:
+
+- Test coverage:  
+  I focused on the algo for crawling the pages rather than the fetching of pages and extraction of links.
+  So it's missing some high level tests (starting on `index.ts`) and more granular tests in `urlsExtractor.ts`.
+
+- Error handling improvement
+
+  - Page loading error
+  - Bad links
+  - Errors in the logs (e.g. I am not handling well links that references section like `#main` or phone number)
+
+- External libraries  
+  Better investigation of the HTML parser library (I picked the 1st one that looked good enough)
+
+- Logging  
+  Migrate `console.log` to actual logger
+
+- Explore other type of links than `<a />`
+  My crawler won't find non semantic HTML links.
+
+- Performance  
+   I didn't do any performance improvements.  
+  Maybe it needs to be faster, I don't know what's acceptable.
+
+- Improvements  
+  Remove the duplicated links.
+
+## Install & Run
+
+### Requirements
+
+You'll need:
+
+- node 21.1.0
+
+### Running locally
+
+Install dependencies
+
+```
+$ npm install
+```
+
+Run with [ts-node](https://github.com/TypeStrong/ts-node)
+
+```
+$ npm run start:local https://www.theguardian.com 2>&1 | tee output.log
+```
+
+### Testing
+
+I've used [Jest](https://jestjs.io/) to write and run the tests.
+
+```
+$ npm run test
+```
