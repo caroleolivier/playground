@@ -2,31 +2,29 @@
 
 ## Steps
 
-Set up
+### Set up
 
 ```
-$ npm init -y # initialize npm with defaults
-$ npm install -D typescript @types/node # install types
-$ npx tsc --init
+$ npm install
 ```
+
+### Build (optional)
+
+```
+$ npm run build
+```
+
 ℹ️ Build into ./build folder
 
-Source
+### Run without building
 
 ```
-$ mkdir src
-```
-
-Run
-```
-$ node build
+$ npm run start:local
 ```
 
 ### Tests
 
 ```
-$ mkdir tests
-$ npm install ts-jest --save-dev
-$ npm install @types/jest --save-dev
+$ npm run test
 
 ```
