@@ -1,0 +1,10 @@
+# Memory benchmarking
+
+Performance comparison of accessing an array of array in NodeJS.
+
+## Set up
+
+```
+$ npm install
+$ npm run start:local
+```
