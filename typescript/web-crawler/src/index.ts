@@ -12,7 +12,8 @@ export async function main() {
 
     const urlStr = process.argv[2];
     const url = new URL(urlStr);
-    console.info(`Running crawler on domain ${url.hostname}`);
+    const domain = url.hostname;
+    console.info(`Running crawler on domain ${domain}`);
 
     const urlExtractor = new UrlsExtractor();
     const crawler = new Crawler(url, urlExtractor);

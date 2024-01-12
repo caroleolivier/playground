@@ -5,6 +5,12 @@ export interface IUrlsExtractor {
 }
 
 export class UrlsExtractor implements IUrlsExtractor {
+  /**
+   * Gets all `a` elements on a page and extracts the `href` tags.
+   * And transforms relative URLs to absolute URLs.
+   * @param pageUrl
+   * @returns
+   */
   async extractFrom(pageUrl: URL) {
     try {
       const response = await fetch(pageUrl.href);
@@ -15,12 +21,12 @@ export class UrlsExtractor implements IUrlsExtractor {
 
       const html = await response.text();
       const root = parse(html);
-      const aElements = root.querySelectorAll("a");
 
-      // TODO: to refactor
-      const urls = aElements
+      // TODO: to refactor this to exclude relative section links like #something on the page.
+      const urls = root
+        .querySelectorAll("a")
         .map((aElt) => aElt.getAttribute("href"))
-        .filter((url) => url != null)
+        .filter((url) => url != null && !url.startsWith("./#"))
         .map((url) => this.toAbsoluteUrl(pageUrl, url!))
         .filter((url): url is URL => url != null);
 
@@ -33,10 +39,10 @@ export class UrlsExtractor implements IUrlsExtractor {
 
   /***
    * Transforms relative links to absolute links.
-   * TODO: review logic
    */
   toAbsoluteUrl(pageUrl: URL, url: string) {
     try {
+      // TODO: review and test logic
       return new URL(
         url.startsWith("/") ? new URL(`${pageUrl.origin}${url}`) : url
       );

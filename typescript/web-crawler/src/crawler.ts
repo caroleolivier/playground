@@ -3,13 +3,12 @@ import { VisitedGraph } from "./visitedGraph";
 
 export class Crawler {
   graph: VisitedGraph;
-  // TODO: should this be on the visited graph?
-  visitedUrls: Set<string> = new Set<string>();
-  startingUrl: URL;
+  visitedUrls: Set<string> = new Set<string>(); // should this be on the visited graph?
+  domain: string;
   urlsExtractor: IUrlsExtractor;
 
   constructor(startingUrl: URL, urlsExtractor: IUrlsExtractor) {
-    this.startingUrl = startingUrl;
+    this.domain = startingUrl.hostname;
     this.urlsExtractor = urlsExtractor;
     this.graph = new VisitedGraph();
   }
@@ -18,16 +17,16 @@ export class Crawler {
     try {
       console.info(`${url}: crawling...`);
       if (this.visitedUrls.has(url.href)) {
-        console.debug(`${url.href}: already visited`);
+        console.debug(`${url.href}: skipping - already visited`);
         return this.graph;
       }
 
-      if (url.hostname != this.startingUrl.hostname) {
-        console.debug(`${url.href}: belongs to a different domain`);
+      if (url.hostname != this.domain) {
+        console.debug(`${url.href}: skipping - belongs to a different domain`);
         return this.graph;
       }
 
-      console.debug(`${url}: processing`);
+      console.debug(`${url}: processing...`);
       this.visitedUrls.add(url.href);
 
       const urls = await this.urlsExtractor.extractFrom(url);
