@@ -1,3 +1,3 @@
-# playground-interview
+# playground
 
-A place for me to practice and prepare for software developer interview questions.
+A place for me to play around with anything.
